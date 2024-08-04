@@ -44,13 +44,14 @@ const addQuote = () => {
 
 // Function to export quotes to a JSON file
 const exportToJsonFile = () => {
-    const dataStr = JSON.stringify(quotes);
-    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-    const exportFileDefaultName = 'quotes.json';
+    const dataStr = JSON.stringify(quotes, null, 2); // Indented JSON
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
     const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.setAttribute('href', url);
+    linkElement.setAttribute('download', 'quotes.json');
     linkElement.click();
+    URL.revokeObjectURL(url); // Clean up
 };
 
 // Function to import quotes from a JSON file
