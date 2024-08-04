@@ -1,6 +1,8 @@
 // Access the elements
 const displayQuote = document.getElementById("quoteDisplay");
 const showNewQuote = document.getElementById("newQuote");
+const newQuoteText = document.getElementById("newQuoteText");
+const newQuoteCategory = document.getElementById("newQuoteCategory");
 const importFileInput = document.getElementById("importFile");
 const exportQuotesButton = document.getElementById("exportQuotes");
 
@@ -26,52 +28,17 @@ const showRandomQuote = () => {
     sessionStorage.setItem('lastViewedQuote', JSON.stringify(randomQuote));
 };
 
-// Function to create add quote form
-const createAddQuoteForm = () => {
-    const form = document.createElement("form");
-    form.id = "addQuoteForm";
-    const container = document.createElement("div");
-    container.classList.add("form-container");
-    const textInput = document.createElement("input");
-    textInput.type = "text";
-    textInput.id = "quoteText";
-    textInput.placeholder = "Enter quote..";
-    textInput.required = true;
-    const categoryLabel = document.createElement("label");
-    categoryLabel.htmlFor = "quoteCategory";
-    categoryLabel.textContent = "Quote category:";
-    const categorySelect = document.createElement("select");
-    categorySelect.id = "quoteCategory";
-    categorySelect.required = true;
-    const categories = ["Inspirational", "Motivational", "Self-help", "Encouragement", "Life"];
-    categories.forEach(category => {
-        const option = document.createElement("option");
-        option.value = category;
-        option.textContent = category;
-        categorySelect.appendChild(option);
-    });
-    const submitButton = document.createElement("button");
-    submitButton.type = "submit";
-    submitButton.textContent = "Add Quote";
-    container.appendChild(textInput);
-    container.appendChild(categoryLabel);
-    container.appendChild(categorySelect);
-    container.appendChild(submitButton);
-    form.appendChild(container);
-    document.body.appendChild(form);
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const text = textInput.value.trim();
-        const category = categorySelect.value;
-        if (text && category) {
-            quotes.push({text, category});
-            saveQuotes();
-            textInput.value = "";
-            categorySelect.value = "";
-            showRandomQuote();
-        }
-    });
+// Function to add a new quote
+const addQuote = () => {
+    const text = newQuoteText.value.trim();
+    const category = newQuoteCategory.value.trim();
+    if (text && category) {
+        quotes.push({text, category});
+        saveQuotes();
+        newQuoteText.value = "";
+        newQuoteCategory.value = "";
+        showRandomQuote();
+    }
 };
 
 // Function to export quotes to a JSON file
@@ -99,7 +66,4 @@ const importFromJsonFile = (event) => {
 
 window.onload = function() {
     showRandomQuote();
-    createAddQuoteForm();
-    importFileInput.onchange = importFromJsonFile;
-    exportQuotesButton.onclick = exportToJsonFile;
 };
