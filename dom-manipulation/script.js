@@ -1,6 +1,8 @@
 // Access the elements
 const displayQuote = document.getElementById("quoteDisplay");
 const showNewQuote = document.getElementById("newQuote");
+const importFileInput = document.getElementById("importFile");
+const exportQuotesButton = document.getElementById("exportQuotes");
 
 // Array of quotes objects
 let quotes = JSON.parse(localStorage.getItem('quotes')) || [
@@ -98,14 +100,6 @@ const importFromJsonFile = (event) => {
 window.onload = function() {
     showRandomQuote();
     createAddQuoteForm();
-    const importInput = document.createElement('input');
-    importInput.type = 'file';
-    importInput.id = 'importFile';
-    importInput.accept = '.json';
-    importInput.onchange = importFromJsonFile;
-    document.body.appendChild(importInput);
-    const exportButton = document.createElement('button');
-    exportButton.textContent = 'Export Quotes';
-    exportButton.onclick = exportToJsonFile;
-    document.body.appendChild(exportButton);
+    importFileInput.onchange = importFromJsonFile;
+    exportQuotesButton.onclick = exportToJsonFile;
 };
