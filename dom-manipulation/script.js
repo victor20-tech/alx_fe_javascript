@@ -1,6 +1,7 @@
 // Access the elements
 const displayQuote = document.getElementById("quoteDisplay");
-const showNewQuote = document.getElementById("newQuote");
+const newQuoteButton = document.getElementById("newQuote");
+const addQuoteButton = document.getElementById("addQuote");
 const newQuoteText = document.getElementById("newQuoteText");
 const newQuoteCategory = document.getElementById("newQuoteCategory");
 const importFileInput = document.getElementById("importFile");
@@ -66,4 +67,8 @@ const importFromJsonFile = (event) => {
 
 window.onload = function() {
     showRandomQuote();
+    newQuoteButton.addEventListener("click", showRandomQuote);
+    addQuoteButton.addEventListener("click", addQuote);
+    importFileInput.addEventListener("change", importFromJsonFile);
+    exportQuotesButton.addEventListener("click", exportToJsonFile);
 };
