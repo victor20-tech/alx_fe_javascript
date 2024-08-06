@@ -10,11 +10,19 @@ const categoryFilter = document.getElementById("categoryFilter");
 
 // Array of quotes objects
 let quotes = JSON.parse(localStorage.getItem('quotes')) || [
+<<<<<<< HEAD
     { text: "The only way to great work is to love what you do.", category: "Inspirational" },
     { text: "Life is what happens when you're busy making other plans.", category: "Life" },
     { text: "Get busy living or get busy dying.", category: "Motivational" },
     { text: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Self-help" },
     { text: "Believe you can and you are halfway there.", category: "Encouragement" },
+=======
+    {text: "The only way to great work is to love what you do.", category: "Inspirational"},
+    {text: "Life is what happens when you're busy making other plans.", category: "Life"},
+    {text: "Get busy living or get busy dying.", category: "Motivational"},
+    {text: "You have within you right now, everything you need to deal with whatever the world can throw at you.", category: "Self-help"},
+    {text: "Believe you can and you are halfway there.", category: "Encouragement"},
+>>>>>>> 48267ae79eabc42814abea6fbfb6da6ba5a0f989
 ];
 
 // Function to save quotes to local storage
@@ -35,7 +43,11 @@ const addQuote = () => {
     const text = newQuoteText.value.trim();
     const category = newQuoteCategory.value.trim();
     if (text && category) {
+<<<<<<< HEAD
         quotes.push({ text, category });
+=======
+        quotes.push({text, category});
+>>>>>>> 48267ae79eabc42814abea6fbfb6da6ba5a0f989
         saveQuotes();
         newQuoteText.value = "";
         newQuoteCategory.value = "";
@@ -89,7 +101,11 @@ const exportToJsonFile = () => {
 // Function to import quotes from a JSON file
 const importFromJsonFile = (event) => {
     const fileReader = new FileReader();
+<<<<<<< HEAD
     fileReader.onload = function (event) {
+=======
+    fileReader.onload = function(event) {
+>>>>>>> 48267ae79eabc42814abea6fbfb6da6ba5a0f989
         const importedQuotes = JSON.parse(event.target.result);
         quotes.push(...importedQuotes);
         saveQuotes();
@@ -99,11 +115,19 @@ const importFromJsonFile = (event) => {
     fileReader.readAsText(event.target.files[0]);
 };
 
+<<<<<<< HEAD
 window.onload = function () {
+=======
+window.onload = function() {
+>>>>>>> 48267ae79eabc42814abea6fbfb6da6ba5a0f989
     populateCategoryFilter();
     filterQuotes();
     newQuoteButton.addEventListener("click", showRandomQuote);
     addQuoteButton.addEventListener("click", addQuote);
     importFileInput.addEventListener("change", importFromJsonFile);
     exportQuotesButton.addEventListener("click", exportToJsonFile);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 48267ae79eabc42814abea6fbfb6da6ba5a0f989
